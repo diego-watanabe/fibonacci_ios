@@ -19,8 +19,15 @@
     sharedFibonacci = [Fibonacci sharedFibonacci];
     n = 0;
     // Do any additional setup after loading the view, typically from a nib.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
 }
-
+-(void)dismissKeyboard {
+    [_intFieldN resignFirstResponder];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -49,4 +56,9 @@
     n--;
     [self print];
 }
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return YES;
+}
+
 @end
