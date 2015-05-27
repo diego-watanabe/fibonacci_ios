@@ -13,6 +13,5 @@
     Fibonacci *sharedFibonacci;
     NSInteger index;
 }
-@property (weak, nonatomic) IBOutlet UITableView *mytable;
 @property (strong) NSMutableArray *tableData;
 @end
