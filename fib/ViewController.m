@@ -33,6 +33,7 @@
     else{
         _outPutLabel.text = [NSString stringWithFormat:@"fib(%i) > maximum unsigned long long", n];
     }
+    _outPutLabel.text = [NSString stringWithFormat:@"fib(%i) = %@", n%sharedFibonacci.fibonacciValues.count, [sharedFibonacci.fibonacciValues objectAtIndex:n%sharedFibonacci.fibonacciValues.count]];
 }
 - (IBAction)calculateTouchUpInside:(id)sender {
     n = _intFieldN.text.intValue;

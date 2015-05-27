@@ -16,5 +16,4 @@
 }
 @property (nonatomic, retain) NSMutableArray *fibonacciValues;
 +(id)sharedFibonacci;
--(NSString *)get:(NSUInteger)n;
 @end

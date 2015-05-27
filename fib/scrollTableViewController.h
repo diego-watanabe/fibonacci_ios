@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Fibonacci.h"
 
-@interface scrollTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>{
+@interface scrollTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>{
     Fibonacci *sharedFibonacci;
+    NSInteger index;
 }
 @property (weak, nonatomic) IBOutlet UITableView *mytable;
 @property (strong) NSMutableArray *tableData;

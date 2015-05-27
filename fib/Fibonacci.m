@@ -26,28 +26,26 @@
     }
     return self;
 }
--(NSString *)get:(NSUInteger)n{
-    return [fibonacciValues objectAtIndex:n];
-}
+
 -(void)createFibonacciDictionary{
     NSString *tempString;
     
-    unsigned long long int fir=1,sec=1,next;
-    tempString = [NSString stringWithFormat: @"%llu", fir];
+    unsigned long long int first=1,second=1,next;
+    tempString = [NSString stringWithFormat: @"%llu", first];
     [fibonacciValues addObject:tempString];
-    tempString = [NSString stringWithFormat: @"%llu", sec];
+    tempString = [NSString stringWithFormat: @"%llu", second];
     [fibonacciValues addObject:tempString];
     
     while(YES){
-        if(ULLONG_MAX-fir<sec){
+        if(ULLONG_MAX-first<second){
             break;
         } else{
-            next=fir+sec;
+            next=first+second;
         }
         tempString = [NSString stringWithFormat: @"%llu", next];
         [fibonacciValues addObject:tempString];
-        fir=sec;
-        sec=next;
+        first=second;
+        second=next;
     }
 }
 @end

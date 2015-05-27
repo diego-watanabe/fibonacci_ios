@@ -16,8 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //initialize shared fibonacci values
     sharedFibonacci = [Fibonacci sharedFibonacci];
     self.tableData = sharedFibonacci.fibonacciValues;
+    //start index at 0 for looping purposes
+    index = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,12 +28,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.tableData count];
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
@@ -40,7 +42,17 @@
     }
     
     cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
+    NSLog(@"%i", sharedFibonacci.fibonacciValues.count);
     return cell;
 }
-
+//to loop the array
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView_ {
+    CGFloat actualPosition = scrollView_.contentOffset.y;
+    CGFloat contentHeight = scrollView_.contentSize.height - (self.tableView.frame.size.height);
+    if (actualPosition >= contentHeight) {
+        //not the best solution but i couldn't quickly figure out an elegant solution for this.
+        [self.tableData addObject:[self.tableData objectAtIndex:index++]];
+        [self.tableView reloadData];
+    }
+}
 @end
